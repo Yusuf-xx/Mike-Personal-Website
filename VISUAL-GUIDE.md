@@ -1,0 +1,551 @@
+# Website Preview & Layout Guide
+
+This document describes the visual layout and design of each section.
+
+## Color Scheme
+
+```
+Primary White:    #FFFFFF  ███████
+Primary Blue:     #0066FF  ███████
+Dark Blue:        #0047B3  ███████
+Light Blue:       #4D94FF  ███████
+Black:            #000000  ███████
+Dark Gray:        #1A1A1A  ███████
+Light Gray:       #F5F5F5  ███████
+```
+
+## Page Sections Layout
+
+### 1. Header (Sticky Navigation)
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  CyberSecPro    About Services Projects Achievements Blog   │
+│                 Contact                            [Login]  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Features**:
+- White background
+- Black logo with blue accent
+- Hover: Blue color on links
+- Sticky (follows scroll)
+- Mobile: Hamburger menu
+
+---
+
+### 2. Hero Section
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│        Securing Digital Assets in a Connected World         │
+│                                                             │
+│    Expert cybersecurity professional specializing in        │
+│    security architecture, risk assessment, and building     │
+│    resilient systems that protect what matters most.        │
+│                                                             │
+│         [View Projects]    [Read Blog]                      │
+│                                                             │
+│              (Grid pattern background - subtle)             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Design**:
+- Gradient background (white → blue tint → white)
+- Large bold heading (black)
+- Subtext in gray
+- Two CTA buttons (blue + outline)
+- Subtle grid pattern overlay
+
+---
+
+### 3. About Me Section
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│  About Me                              ┌─────────────┐      │
+│                                        │             │      │
+│  Professional summary text...          │   🛡️        │      │
+│  Multiple paragraphs describing        │ Cybersec    │      │
+│  expertise and approach.               │  Expert     │      │
+│                                        │             │      │
+│  Core Competencies:                    └─────────────┘      │
+│  • Security Architecture                                    │
+│  • Risk Assessment                                          │
+│  • Penetration Testing                                      │
+│  • Compliance & Governance                                  │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Design**:
+- Two-column layout (text + visual)
+- Black heading
+- Gray body text
+- Blue bullet points
+- Gradient card for profile placeholder
+
+---
+
+### 4. Services Section
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│              Cybersecurity Specializations                  │
+│                                                             │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐                   │
+│  │   🛡️     │  │    ⚠️    │  │   🔒     │                  │
+│  │Security  │  │   Risk   │  │  Secure  │                   │
+│  │Architect │  │Assessment│  │  System  │                   │
+│  │          │  │          │  │  Design  │                   │
+│  └──────────┘  └──────────┘  └──────────┘                   │
+│                                                             │
+│  ┌──────────┐  ┌──────────┐                                 │
+│  │   💾     │  │   🤖     │                                │
+│  │   Data   │  │AI & Sec  │                                 │
+│  │Protection│  │Engineering│                                │
+│  └──────────┘  └──────────┘                                 │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Design**:
+- Light gray background
+- 3-column grid (responsive)
+- White cards with blue icons
+- Hover: Border turns blue, lift shadow
+- Icon in light blue circle
+
+---
+
+### 5. Projects Section
+
+```
+┌────────────────────────────────────────────────────────────┐
+│                                                            │
+│                   Featured Projects                        │
+│                                                            │
+│  ┌────────────────┐ ┌────────────────┐ ┌────────────────┐  │
+│  │Zero-Trust      │ │AI-Powered      │ │Secure CI/CD    │  │
+│  │Network Arch    │ │Threat Detect   │ │Pipeline        │  │
+│  │                │ │                │ │                │  │
+│  │Description...  │ │Description...  │ │Description...  │  │
+│  │                │ │                │ │                │  │
+│  │AWS Terraform   │ │Python TensorF  │ │GitHub Actions  │  │
+│  │Okta Istio      │ │Elasticsearch   │ │Snyk SonarQube  │  │
+│  │                │ │                │ │                │  │
+│  │Impact: 85%...  │ │Impact: 97%...  │ │Impact: 70%...  │  │
+│  └────────────────┘ └────────────────┘ └────────────────┘  │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+```
+
+**Design**:
+- Light gray background
+- 3-column grid
+- White cards
+- Blue tech badges
+- Blue impact text
+- Hover: Shadow + blue border
+
+---
+
+### 6. Achievements Timeline
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│                   Career Achievements                       │
+│                                                             │
+│                         │                                   │
+│  ┌──────────────────┐   │                                   │
+│  │ 2024             │───●                                   │
+│  │ Enterprise Sec   │   │                                   │
+│  │ Transformation   │   │                                   │
+│  │ Impact: 75%↓     │   │                                   │
+│  └──────────────────┘   │                                   │
+│                          │                                  │
+│                          │   ┌──────────────────┐           │
+│                          ●───│ 2023             │           │
+│                          │   │ SOC Launch       │           │
+│                          │   │ 99.9% Detection  │           │
+│                          │   └──────────────────┘           │
+│                          │                                  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Design**:
+- White background
+- Vertical blue timeline
+- Alternating left/right cards
+- Blue dots on timeline
+- White cards with blue border
+- Hover: Shadow effect
+
+---
+
+### 7. Skills Section
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│                   Skills & Tech Stack                       │
+│                                                             │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │Programming   │  │Frameworks    │  │Databases     │       │
+│  │              │  │              │  │              │       │
+│  │Python  JS Go │  │React Next.js │  │PostgreSQL    │       │
+│  │Bash Shell SQL│  │Node Django   │  │MongoDB Redis │       │
+│  └──────────────┘  └──────────────┘  └──────────────┘       │
+│                                                             │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │Cloud/DevOps  │  │Security Tools│  │Frameworks    │       │
+│  │AWS Azure GCP │  │Wireshark     │  │NIST ISO 27001│       │
+│  │Docker K8s    │  │Metasploit    │  │OWASP CIS     │       │
+│  └──────────────┘  └──────────────┘  └──────────────┘       │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Design**:
+- White background
+- 3-column grid
+- White cards with border
+- Gray skill tags
+- Hover: Tag turns blue with white text
+- Hover card: Blue border
+
+---
+
+### 8. Blog Section
+
+```
+┌────────────────────────────────────────────────────────────┐
+│                                                            │
+│                   Latest Blog Posts                        │
+│                                                            │
+│  ┌────────────────┐ ┌────────────────┐ ┌────────────────┐  │
+│  │Post Title 1    │ │Post Title 2    │ │Post Title 3    │  │
+│  │                │ │                │ │                │  │
+│  │Description of  │ │Description of  │ │Description of  │  │
+│  │the blog post   │ │the blog post   │ │the blog post   │  │
+│  │continues here  │ │continues here  │ │continues here  │  │
+│  │                │ │                │ │                │  │
+│  │Jan 15, 2024    │ │Jan 10, 2024    │ │Jan 5, 2024     │  │
+│  │    [Read More] │ │    [Read More] │ │    [Read More] │  │
+│  └────────────────┘ └────────────────┘ └────────────────┘  │
+│                                                            │
+│                    [View All Posts]                        │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+```
+
+**Design**:
+- Light gray background
+- 3 latest posts from database
+- White cards
+- Blue date text
+- Blue outline buttons
+- Hover: Shadow + blue border
+- **DYNAMIC** - fetches from Supabase
+
+---
+
+### 9. Testimonials Section
+
+```
+┌────────────────────────────────────────────────────────────┐
+│                                                            │
+│                     Testimonials                           │
+│                                                            │
+│  ┌────────────────┐ ┌────────────────┐ ┌────────────────┐  │
+│  │"Outstanding    │ │"Exceptional    │ │"Professional   │  │
+│  │expertise in    │ │problem-solving │ │and reliable    │  │
+│  │security..."    │ │skills..."      │ │results..."     │  │
+│  │                │ │                │ │                │  │
+│  │Sarah Johnson   │ │Michael Chen    │ │Emily Rodriguez │  │
+│  │CTO             │ │VP Engineering  │ │CISO            │  │
+│  │TechCorp        │ │DataSecure Inc  │ │FinanceGuard    │  │
+│  └────────────────┘ └────────────────┘ └────────────────┘  │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+```
+
+**Design**:
+- White background
+- 3-column grid
+- White cards with border
+- Italic quote text
+- Blue company name
+- Hover: Shadow
+
+---
+
+### 10. Contact Section
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│                      Get In Touch                           │
+│                                                             │
+│  ┌───────────────────────┐     Connect With Me              │
+│  │ Name                  │                                  │
+│  │ [____________]        │     📧 contact@example.com       │
+│  │                       │     💼 LinkedIn Profile          │
+│  │ Email                 │     🐙 GitHub Profile             │
+│  │ [____________]        │                                  │
+│  │                       │                                  │
+│  │ Message               │     [Download Resume]            │
+│  │ [_________________]   │                                  │
+│  │ [_________________]   │                                  │
+│  │                       │                                  │
+│  │   [Send Message]      │                                  │
+│  └───────────────────────┘                                  │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Design**:
+- Light gray background
+- Two-column layout
+- White card for form
+- Blue submit button
+- Social icons with links
+- Hover: Icons turn blue
+- **WORKING FORM** - saves to database
+
+---
+
+### 11. Footer
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│  CyberSecPro           Quick Links          Connect         │
+│  Professional          About                GitHub          │
+│  cybersecurity         Services             LinkedIn        │
+│  expert...             Projects             Email           │
+│                        Blog                                 │
+│                        Contact                              │
+│                                                             │
+│              © 2024 CyberSecPro. All rights reserved.       │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Design**:
+- Dark gray background (#1A1A1A)
+- White text
+- 3-column layout
+- Blue hover on links
+- Social icons
+
+---
+
+## Admin Dashboard Layout
+
+### Login Page
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│                                                             │
+│                      Admin Login                            │
+│                Sign in to manage your blog posts            │
+│                                                             │
+│              ┌─────────────────────────┐                    │
+│              │ Email                   │                    │
+│              │ [___________________]   │                    │
+│              │                         │                    │
+│              │ Password                │                    │
+│              │ [___________________]   │                    │
+│              │                         │                    │
+│              │     [Sign In]           │                    │
+│              └─────────────────────────┘                    │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### Dashboard Home
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ Admin Dashboard                                    [Logout] │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  Blog Posts                           [Create New Post]     │
+│                                                             │
+│  ┌─────────────────────────────────────────────────────────┐│
+│  │ Title          │ Slug          │ Created   │ Actions    ││
+│  ├────────────────┼───────────────┼───────────┼────────────┤│
+│  │ Post Title 1   │ post-title-1  │ Jan 15    │[Edit][Del] ││
+│  │ Post Title 2   │ post-title-2  │ Jan 10    │[Edit][Del] ││
+│  │ Post Title 3   │ post-title-3  │ Jan 5     │[Edit][Del] ││
+│  └─────────────────────────────────────────────────────────┘│
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### Create/Edit Post
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ Create New Blog Post                                        │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  ┌─────────────────────────────────────────────────────────┐│
+│  │ Title                                                   ││
+│  │ [________________________________________________]      ││
+│  │                                                         ││
+│  │ Slug                                                    ││
+│  │ [________________________________________________]      ││
+│  │                                                         ││
+│  │ Description                                             ││
+│  │ [________________________________________________]      ││
+│  │ [________________________________________________]      ││
+│  │                                                         ││
+│  │ Content                                                 ││
+│  │ [________________________________________________]      ││
+│  │ [________________________________________________]      ││
+│  │ [________________________________________________]      ││
+│  │ [________________________________________________]      ││
+│  │ [________________________________________________]      ││
+│  │                                                         ││
+│  │    [Create Post]  [Cancel]                              ││
+│  └─────────────────────────────────────────────────────────┘│
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Responsive Design
+
+### Desktop (1024px+)
+- Full multi-column layouts
+- Side-by-side content
+- Large images and text
+
+### Tablet (768px - 1023px)
+- 2-column grids become responsive
+- Adjusted spacing
+- Optimized navigation
+
+### Mobile (< 768px)
+- Single column layouts
+- Stacked sections
+- Hamburger menu
+- Touch-friendly buttons
+- Larger tap targets
+
+---
+
+## Design Principles Applied
+
+### 1. Visual Hierarchy
+- Large headings (text-4xl)
+- Medium subheadings (text-xl)
+- Body text (text-base)
+- Small meta text (text-sm)
+
+### 2. Spacing
+- Section padding: 80px vertical
+- Element margins: 16-24px
+- Card padding: 24px
+- Consistent gaps in grids: 32px
+
+### 3. Color Usage
+- White: Primary background
+- Blue: CTAs, links, accents
+- Black: Headings
+- Gray: Body text, borders
+
+### 4. Interactive States
+- Hover: Color change, shadow, scale
+- Active: Pressed state
+- Focus: Blue outline ring
+- Disabled: Reduced opacity
+
+### 5. Accessibility
+- Semantic HTML
+- ARIA labels where needed
+- Keyboard navigation
+- Sufficient color contrast
+
+---
+
+## Animation & Transitions
+
+### Subtle Animations
+```css
+/* Fade in on load */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Slide up on load */
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+/* Hover transitions */
+.transition-all {
+  transition: all 0.2s ease;
+}
+```
+
+### Hover Effects
+- Cards: Lift shadow, border color change
+- Buttons: Background color change
+- Links: Color change
+- Images: Slight zoom
+
+---
+
+## Typography Scale
+
+```
+h1: 3.5rem (56px) - Hero heading
+h2: 2.25rem (36px) - Section headings
+h3: 1.5rem (24px) - Card titles
+h4: 1.25rem (20px) - Subsections
+p:  1rem (16px) - Body text
+sm: 0.875rem (14px) - Meta info
+```
+
+---
+
+## Icon System
+
+Using **React Icons** (FiIcons):
+- 🛡️ Security: FiShield
+- ⚠️ Risk: FiAlertTriangle  
+- 🔒 Lock: FiLock
+- 💾 Database: FiDatabase
+- 🤖 AI: FiCpu
+- 🔗 Link: FiExternalLink
+- 📧 Email: FiMail
+- 💼 LinkedIn: FiLinkedin
+- 🐙 GitHub: FiGithub
+- ⚙️ Settings: FiSettings
+
+---
+
+## Browser Support
+
+✅ Chrome (latest)
+✅ Firefox (latest)
+✅ Safari (latest)
+✅ Edge (latest)
+✅ Mobile browsers (iOS Safari, Chrome Mobile)
+
+---
+
+This is what your website will look like when built and running!
