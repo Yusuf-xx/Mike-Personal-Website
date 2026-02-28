@@ -23,7 +23,7 @@ export default function Textarea({
 }: TextareaProps) {
   return (
     <div className="mb-4">
-      <label htmlFor={name} className="block text-sm font-medium text-cyber-black mb-2">
+      <label htmlFor={name} className="block text-sm font-medium text-charcoal mb-2">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
       <textarea
@@ -35,7 +35,7 @@ export default function Textarea({
         required={required}
         disabled={disabled}
         rows={rows}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed resize-vertical"
+        className="w-full px-4 py-3 border border-border-muted rounded-sm focus:outline-none focus:ring-1 focus:ring-navy focus:border-navy/30 disabled:bg-ivory disabled:cursor-not-allowed resize-vertical text-charcoal"
       />
     </div>
   );

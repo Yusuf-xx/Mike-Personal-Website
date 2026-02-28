@@ -11,11 +11,11 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   const navLinks = [
+    { name: 'Home', href: '/' },
     { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Achievements', href: '#achievements' },
-    { name: 'Blog', href: '#blog' },
+    { name: 'Cybersecurity Law Insights', href: '#blog' },
+    { name: 'Resources', href: '#resources' },
+    { name: 'Resume', href: '#cv' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -24,7 +24,7 @@ export default function Header() {
       setIsScrolled(window.scrollY > 12);
     };
 
-    const sectionIds = navLinks.map((link) => link.href.replace('#', ''));
+    const sectionIds = ['about', 'blog', 'resources', 'cv', 'contact'];
     const observers: IntersectionObserver[] = [];
 
     sectionIds.forEach((id) => {
@@ -56,65 +56,85 @@ export default function Header() {
   }, []);
 
   const headerClasses = isScrolled
-    ? 'bg-white/95 shadow-sm border-b border-gray-200 backdrop-blur-md'
-    : 'bg-white/60 border-b border-transparent backdrop-blur-xl';
+    ? 'bg-ivory/98 shadow-sm border-b border-border-muted backdrop-blur-sm'
+    : 'bg-ivory/95 border-b border-transparent';
 
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${headerClasses}`}>
-      <nav className="container mx-auto px-4 max-w-7xl">
+    <header className={`sticky top-0 z-50 transition-all duration-200 ${headerClasses}`}>
+      <nav className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-xl md:text-2xl font-semibold tracking-tight text-cyber-black">
-            CyberSec<span className="text-primary-blue">Pro</span>
+          <Link
+            href="/"
+            className="font-serif text-xl md:text-2xl font-semibold tracking-tight text-charcoal"
+          >
+            Cybersecurity & Law
           </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`relative text-sm font-medium tracking-wide transition-colors duration-200 rounded-full px-2 py-1 ${
-                  activeSection === link.href.replace('#', '')
-                    ? 'text-primary-blue bg-primary-blue/5'
-                    : 'text-cyber-black/80 hover:text-primary-blue hover:bg-primary-blue/5'
-                }`}
-              >
-                <span>{link.name}</span>
-                <span
-                  className={`pointer-events-none absolute -bottom-1 left-0 h-[2px] w-full origin-left rounded-full bg-gradient-to-r from-primary-blue to-primary-light/70 transition-transform duration-300 ${
-                    activeSection === link.href.replace('#', '') ? 'scale-x-100' : 'scale-x-0'
-                  }`}
-                />
-              </a>
-            ))}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => {
+              const isHash = link.href.startsWith('#');
+              const sectionId = isHash ? link.href.slice(1) : null;
+              const isActive = sectionId ? activeSection === sectionId : false;
+
+              if (isHash) {
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className={`relative text-sm font-medium text-charcoal/80 hover:text-navy transition-colors duration-200 py-2 ${
+                      isActive ? 'text-navy' : ''
+                    }`}
+                  >
+                    {link.name}
+                    <span
+                      className={`absolute bottom-0 left-0 h-px bg-navy transition-all duration-200 ${
+                        isActive ? 'w-full' : 'w-0 hover:w-full'
+                      }`}
+                    />
+                  </a>
+                );
+              }
+
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="relative text-sm font-medium text-charcoal/80 hover:text-navy transition-colors duration-200 py-2 after:absolute after:bottom-0 after:left-0 after:h-px after:bg-navy after:transition-all after:duration-200 after:w-0 hover:after:w-full"
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
             <Link href="/admin">
-              <Button variant="outline" className="py-2 px-4">
+              <Button variant="outline" className="py-2 px-4 text-sm">
                 Login
               </Button>
             </Link>
           </div>
 
           <button
-            className="md:hidden text-cyber-black"
+            className="md:hidden text-charcoal p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden py-4 space-y-4">
+          <div className="md:hidden py-4 border-t border-border-muted space-y-1">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="block text-cyber-black hover:text-primary-blue transition-colors duration-200"
+                className="block py-3 text-charcoal/90 hover:text-navy transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
               </a>
             ))}
-            <Link href="/admin" onClick={() => setIsMenuOpen(false)}>
-              <Button variant="outline" className="py-2 px-4 w-full">
+            <Link href="/admin" onClick={() => setIsMenuOpen(false)} className="block pt-2">
+              <Button variant="outline" className="w-full py-2">
                 Login
               </Button>
             </Link>

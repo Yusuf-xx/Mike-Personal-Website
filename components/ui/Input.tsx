@@ -28,7 +28,7 @@ export default function Input({
 }: InputProps) {
   return (
     <div className="mb-4">
-      <label htmlFor={name} className="block text-sm font-medium text-cyber-black mb-2">
+      <label htmlFor={name} className="block text-sm font-medium text-charcoal mb-2">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
       <div className="relative">
@@ -41,7 +41,7 @@ export default function Input({
           placeholder={placeholder}
           required={required}
           disabled={disabled}
-          className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed ${trailing ? 'pr-11' : ''}`}
+          className={`w-full px-4 py-3 border border-border-muted rounded-sm focus:outline-none focus:ring-1 focus:ring-navy focus:border-navy/30 disabled:bg-ivory disabled:cursor-not-allowed text-charcoal ${trailing ? 'pr-11' : ''}`}
         />
         {trailing && (
           <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">

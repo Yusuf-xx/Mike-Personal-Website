@@ -1,15 +1,16 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 
 export const metadata: Metadata = {
-  title: 'CyberSecPro - Cybersecurity Expert Portfolio',
-  description: 'Professional cybersecurity expert specializing in security architecture, risk assessment, and secure system design.',
-  keywords: ['cybersecurity', 'security architecture', 'risk assessment', 'penetration testing', 'data protection'],
+  title: 'Cybersecurity Professional & Legal Specialist',
+  description: 'Cybersecurity professional with legal expertise in regulatory compliance, data protection, risk & governance, and the intersection of technology and law.',
+  keywords: ['cybersecurity law', 'regulatory compliance', 'data protection', 'risk governance', 'technology law'],
 };
 
 export default function RootLayout({
@@ -18,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className={inter.className}>
         <Header />
         <main>{children}</main>

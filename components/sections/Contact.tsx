@@ -9,7 +9,6 @@ import { submitMessage } from '@/app/actions/messages';
 import { FiGithub, FiLinkedin, FiMail, FiDownload, FiMapPin } from 'react-icons/fi';
 import SectionHeader from '../ui/SectionHeader';
 
-// Customize your address and map: get embed URL from Google Maps → Share → Embed a map
 const CONTACT_ADDRESS = {
   line1: '123 Security Avenue, Suite 100',
   line2: 'Cyber City, CC 12345',
@@ -21,7 +20,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -47,81 +46,84 @@ export default function Contact() {
   };
 
   return (
-    <Section id="contact" background="gray">
-      <SectionHeader
-        eyebrow="Contact"
-        title="Let’s talk about strengthening your security posture."
-        description="Share a few details about your environment and objectives, and I’ll follow up with concrete next steps."
-      />
+    <Section id="contact" background="white">
+      <div className="relative">
+        <div className="h-px w-12 bg-accent-gold/60 mb-6" />
+        <SectionHeader
+          eyebrow="Contact"
+          title="Get in touch"
+          description="For inquiries on cybersecurity law, compliance, or advisory work."
+          align="left"
+          goldLine={false}
+        />
+      </div>
 
-      <div className="grid max-w-5xl grid-cols-1 gap-10 md:grid-cols-2 mx-auto">
-        <div>
-          <form
-            onSubmit={handleSubmit}
-            className="rounded-2xl border border-gray-200 bg-white/90 p-8 shadow-soft"
+      <div className="grid max-w-5xl grid-cols-1 gap-12 md:grid-cols-2 mx-auto">
+        <form
+          onSubmit={handleSubmit}
+          className="border border-border-muted bg-white p-8 md:p-10 shadow-card"
+        >
+          <Input
+            label="Name"
+            name="name"
+            value={formData.name}
+            onChange={(value) => setFormData({ ...formData, name: value })}
+            placeholder="Your name"
+            required
+            disabled={isSubmitting}
+          />
+          <Input
+            label="Email"
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={(value) => setFormData({ ...formData, email: value })}
+            placeholder="your.email@example.com"
+            required
+            disabled={isSubmitting}
+          />
+          <Textarea
+            label="Message"
+            name="message"
+            value={formData.message}
+            onChange={(value) => setFormData({ ...formData, message: value })}
+            placeholder="Your message..."
+            required
+            disabled={isSubmitting}
+            rows={6}
+          />
+
+          <Button
+            type="submit"
+            variant="primary"
+            className="w-full"
+            disabled={isSubmitting}
           >
-            <Input
-              label="Name"
-              name="name"
-              value={formData.name}
-              onChange={(value) => setFormData({ ...formData, name: value })}
-              placeholder="Your name"
-              required
-              disabled={isSubmitting}
-            />
-            <Input
-              label="Email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={(value) => setFormData({ ...formData, email: value })}
-              placeholder="your.email@example.com"
-              required
-              disabled={isSubmitting}
-            />
-            <Textarea
-              label="Message"
-              name="message"
-              value={formData.message}
-              onChange={(value) => setFormData({ ...formData, message: value })}
-              placeholder="Tell me about your project or inquiry..."
-              required
-              disabled={isSubmitting}
-              rows={6}
-            />
+            {isSubmitting ? 'Sending...' : 'Send Message'}
+          </Button>
 
-            <Button
-              type="submit"
-              variant="primary"
-              className="w-full"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
-            </Button>
-
-            {submitStatus === 'success' && (
-              <p className="mt-4 text-green-600 text-center">
-                Message sent successfully! I'll get back to you soon.
-              </p>
-            )}
-            {submitStatus === 'error' && (
-              <p className="mt-4 text-red-600 text-center">
-                Failed to send message. Please try again or contact me directly.
-              </p>
-            )}
-          </form>
-        </div>
+          {submitStatus === 'success' && (
+            <p className="mt-4 text-sm text-charcoal/70 text-center">
+              Message sent successfully. I will get back to you soon.
+            </p>
+          )}
+          {submitStatus === 'error' && (
+            <p className="mt-4 text-sm text-red-600/90 text-center">
+              Failed to send. Please try again or contact directly.
+            </p>
+          )}
+        </form>
 
         <div className="flex flex-col justify-center space-y-8">
           <div>
-            <h3 className="text-2xl font-semibold text-cyber-black mb-6">
-              Connect With Me
+            <h3 className="font-serif text-xl font-semibold text-charcoal mb-6">
+              Connect
             </h3>
             <div className="space-y-4">
-              <div className="flex items-start text-gray-600">
-                <FiMapPin className="mr-3 mt-1 shrink-0" size={24} />
+              <div className="flex items-start text-charcoal/75">
+                <FiMapPin className="mr-3 mt-1 shrink-0" size={20} />
                 <address className="not-italic">
-                  <span className="block font-medium text-cyber-black">Address</span>
+                  <span className="block font-medium text-charcoal">Address</span>
                   <span className="block mt-1">
                     {CONTACT_ADDRESS.line1}<br />
                     {CONTACT_ADDRESS.line2}
@@ -130,47 +132,44 @@ export default function Contact() {
               </div>
               <a
                 href="mailto:contact@example.com"
-                className="flex items-center text-gray-600 hover:text-primary-blue transition-colors duration-200"
+                className="flex items-center text-charcoal/75 hover:text-navy transition-colors"
               >
-                <FiMail className="mr-3" size={24} />
+                <FiMail className="mr-3" size={20} />
                 <span>contact@example.com</span>
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center text-gray-600 hover:text-primary-blue transition-colors duration-200"
+                className="flex items-center text-charcoal/75 hover:text-navy transition-colors"
               >
-                <FiLinkedin className="mr-3" size={24} />
-                <span>LinkedIn Profile</span>
+                <FiLinkedin className="mr-3" size={20} />
+                <span>LinkedIn</span>
               </a>
               <a
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center text-gray-600 hover:text-primary-blue transition-colors duration-200"
+                className="flex items-center text-charcoal/75 hover:text-navy transition-colors"
               >
-                <FiGithub className="mr-3" size={24} />
-                <span>GitHub Profile</span>
+                <FiGithub className="mr-3" size={20} />
+                <span>GitHub</span>
               </a>
             </div>
           </div>
 
-          <div>
-            <Button variant="outline" className="w-full">
-              <FiDownload className="mr-2 inline" />
-              Download Resume
-            </Button>
-          </div>
+          <Button variant="outline" className="w-full" type="button" onClick={() => window.location.href = '#cv'}>
+            <FiDownload className="mr-2 inline" size={18} />
+            Download CV
+          </Button>
         </div>
       </div>
 
-      {/* Map: update MAP_EMBED_URL above with your location (Google Maps → Share → Embed a map) */}
-      <div className="mt-16 mx-auto max-w-5xl">
-        <h3 className="mb-4 text-sm font-semibold tracking-[0.2em] uppercase text-gray-500">
+      <div className="mt-16 max-w-5xl mx-auto">
+        <h3 className="text-xs font-medium tracking-[0.15em] uppercase text-charcoal/50 mb-4">
           Location
         </h3>
-        <div className="aspect-video w-full overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 shadow-sm">
+        <div className="aspect-video w-full overflow-hidden border border-border-muted bg-white">
           <iframe
             src={MAP_EMBED_URL}
             width="100%"
@@ -179,7 +178,7 @@ export default function Contact() {
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Office location map"
+            title="Office location"
             className="block w-full h-full min-h-[280px]"
           />
         </div>
