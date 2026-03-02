@@ -14,7 +14,7 @@ export default function CV() {
         <SectionHeader
           eyebrow="Credentials"
           title="Curriculum Vitae"
-          description="Professional summary and experience in cybersecurity, legal, and regulatory practice."
+          description="New York Bar candidate with over six years across healthcare technology, banking, and SaaS. Compliance strategies aligned with ISO 27001, GDPR, and NIST; incident response, data protection, and regulatory risk."
           align="center"
         />
         <motion.div

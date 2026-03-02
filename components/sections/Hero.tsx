@@ -19,7 +19,7 @@ export default function Hero() {
               Protecting Data. Navigating Regulation. Securing the Future.
             </h1>
             <p className="max-w-xl text-lg text-charcoal/75 leading-relaxed">
-              Cybersecurity professional with legal expertise in regulatory compliance, governance, and digital risk.
+              New York Bar candidate focused on cybersecurity and technology law—with over six years across healthcare technology, banking, and SaaS.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="#blog">

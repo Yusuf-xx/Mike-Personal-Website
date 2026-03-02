@@ -9,7 +9,7 @@ export default function About() {
     <Section id="about" background="white">
       <SectionHeader
         eyebrow="Profile"
-        title="Cybersecurity background meets legal expertise."
+        title="About Me"
         description=""
         align="left"
       />
@@ -28,28 +28,28 @@ export default function About() {
 
         <div className="space-y-6">
           <p className="text-base leading-relaxed text-charcoal/80 md:text-lg">
-            My practice sits at the intersection of cybersecurity and law. I bring technical depth from years in security architecture and incident response, combined with legal education and a focus on regulatory compliance, data protection, and governance.
+            I am a New York Bar candidate focused on cybersecurity and technology law, with over six years of experience across healthcare technology, banking, and SaaS environments. I operate within highly regulated, data intensive systems where legal precision and risk governance are critical.
           </p>
           <p className="text-base leading-relaxed text-charcoal/80 md:text-lg">
-            I help organizations navigate frameworks such as GDPR, CCPA, NY SHIELD, and SEC cyber disclosure requirements—aligning technical controls with legal and regulatory expectations.
+            I design and implement compliance strategies aligned with ISO 27001, GDPR, and NIST frameworks, addressing incident response, data protection, and regulatory risk. My work centers on strengthening governance controls, evaluating emerging technology risks, and aligning operational systems with evolving legal standards.
           </p>
           <p className="text-base leading-relaxed text-charcoal/80 md:text-lg">
-            Certifications and continuous education in both security and law keep the practice current on threats, regulations, and best practices for risk and governance.
+            Through my writing, I analyze cybersecurity regulation, AI governance, and digital privacy enforcement, offering structured legal insight into the risks shaping modern technology ecosystems.
           </p>
           <div className="pt-4">
             <h3 className="font-serif text-lg font-semibold text-charcoal mb-3">Focus areas</h3>
             <ul className="space-y-2 text-charcoal/75 text-sm md:text-base">
               <li className="flex items-center gap-2">
                 <span className="w-1 h-1 rounded-full bg-navy" />
-                Cybersecurity Law & Policy
+                Cybersecurity & Technology Law
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1 h-1 rounded-full bg-navy" />
-                Regulatory Compliance
+                Compliance (ISO 27001, GDPR, NIST)
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1 h-1 rounded-full bg-navy" />
-                Data Protection & Privacy
+                Incident Response & Data Protection
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1 h-1 rounded-full bg-navy" />
@@ -57,7 +57,7 @@ export default function About() {
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1 h-1 rounded-full bg-navy" />
-                Technology & Law
+                AI Governance & Digital Privacy
               </li>
             </ul>
           </div>
