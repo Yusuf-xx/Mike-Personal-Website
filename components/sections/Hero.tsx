@@ -2,6 +2,7 @@
 
 import Button from '@/components/ui/Button';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 export default function Hero() {
@@ -39,13 +40,16 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
-            className="hidden md:block relative"
-            aria-hidden
+            className="hidden md:block relative w-full max-w-md lg:max-w-lg"
           >
-            <div className="w-48 h-64 border-l-2 border-navy/20 flex items-end pb-4">
-              <div className="w-12 h-16 border border-navy/15 ml-4" />
-              <div className="absolute bottom-0 left-0 w-24 h-px bg-border-muted" />
-            </div>
+            <Image
+              src="/hero-data-privacy.jpg"
+              alt="Data privacy and cybersecurity concepts: user protection, data theft prevention, device protection, phishing awareness, and data governance"
+              width={560}
+              height={420}
+              className="w-full h-auto object-contain"
+              priority
+            />
           </motion.div>
         </div>
       </div>
