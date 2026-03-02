@@ -14,7 +14,7 @@ export default function CV() {
         <SectionHeader
           eyebrow="Credentials"
           title="Curriculum Vitae"
-          description="New York Bar candidate with over six years across healthcare technology, banking, and SaaS. Compliance strategies aligned with ISO 27001, GDPR, and NIST; incident response, data protection, and regulatory risk."
+          description="New York Bar candidate at the intersection of cybersecurity and technology law. Experience designing compliance and governance programs aligned with ISO 27001, GDPR, and NIST across healthcare, banking, and SaaS. Focus on regulatory risk, incident response, and operational alignment with legal standards."
           align="center"
         />
         <motion.div

@@ -8,8 +8,8 @@ export default function About() {
   return (
     <Section id="about" background="white">
       <SectionHeader
-        eyebrow="Profile"
-        title="About Me"
+        eyebrow=""
+        title="About"
         description=""
         align="left"
       />
@@ -28,28 +28,31 @@ export default function About() {
 
         <div className="space-y-6">
           <p className="text-base leading-relaxed text-charcoal/80 md:text-lg">
-            I am a New York Bar candidate focused on cybersecurity and technology law, with over six years of experience across healthcare technology, banking, and SaaS environments. I operate within highly regulated, data intensive systems where legal precision and risk governance are critical.
+            I am a New York Bar candidate focused on cybersecurity and technology law, with operational experience in highly regulated, data-intensive environments where legal precision and risk governance are critical.
           </p>
           <p className="text-base leading-relaxed text-charcoal/80 md:text-lg">
-            I design and implement compliance strategies aligned with ISO 27001, GDPR, and NIST frameworks, addressing incident response, data protection, and regulatory risk. My work centers on strengthening governance controls, evaluating emerging technology risks, and aligning operational systems with evolving legal standards.
+            Over six years, I have worked across healthcare technology, banking, and SaaS. My practice centers on systems where regulatory expectations, data protection obligations, and incident response requirements converge—and where governance controls must be both technically sound and legally defensible.
           </p>
           <p className="text-base leading-relaxed text-charcoal/80 md:text-lg">
-            Through my writing, I analyze cybersecurity regulation, AI governance, and digital privacy enforcement, offering structured legal insight into the risks shaping modern technology ecosystems.
+            I design and implement compliance strategies aligned with ISO 27001, GDPR, and NIST frameworks. This work addresses incident response, data protection, and regulatory risk—strengthening governance controls, evaluating emerging technology risks, and aligning operational systems with evolving legal standards.
+          </p>
+          <p className="text-base leading-relaxed text-charcoal/80 md:text-lg">
+            Through writing and analysis, I examine cybersecurity regulation, AI governance, and digital privacy enforcement, offering structured legal insight into the risks and frameworks shaping modern technology ecosystems.
           </p>
           <div className="pt-4">
             <h3 className="font-serif text-lg font-semibold text-charcoal mb-3">Focus areas</h3>
             <ul className="space-y-2 text-charcoal/75 text-sm md:text-base">
               <li className="flex items-center gap-2">
                 <span className="w-1 h-1 rounded-full bg-navy" />
-                Cybersecurity & Technology Law
+                Cybersecurity Law & Policy
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1 h-1 rounded-full bg-navy" />
-                Compliance (ISO 27001, GDPR, NIST)
+                Regulatory Compliance
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1 h-1 rounded-full bg-navy" />
-                Incident Response & Data Protection
+                Data Protection & Privacy
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1 h-1 rounded-full bg-navy" />
@@ -57,7 +60,7 @@ export default function About() {
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1 h-1 rounded-full bg-navy" />
-                AI Governance & Digital Privacy
+                Technology & Law
               </li>
             </ul>
           </div>

@@ -13,9 +13,14 @@ export default function Footer() {
     <footer className="bg-navy text-white py-12">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <p className="font-serif text-lg font-semibold text-white/95">
-            Cybersecurity & Law
-          </p>
+          <div>
+            <p className="font-serif text-lg font-semibold text-white/95">
+              Cybersecurity & Technology Law
+            </p>
+            <p className="mt-1 text-sm text-white/60">
+              Cybersecurity, regulation, and technology governance.
+            </p>
+          </div>
           <nav className="flex flex-wrap gap-6">
             {links.map((link) => (
               <a

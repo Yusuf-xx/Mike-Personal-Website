@@ -16,10 +16,10 @@ export default function Hero() {
             className="space-y-8"
           >
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-charcoal leading-[1.15]">
-              Protecting Data. Navigating Regulation. Securing the Future.
+              Cybersecurity, Technology Law, and Regulatory Governance
             </h1>
             <p className="max-w-xl text-lg text-charcoal/75 leading-relaxed">
-              New York Bar candidate focused on cybersecurity and technology law—with over six years across healthcare technology, banking, and SaaS.
+              New York Bar candidate focused on cybersecurity and technology law. Six years across healthcare technology, banking, and SaaS—designing compliance strategies and governance controls where legal precision and risk matter.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="#blog">

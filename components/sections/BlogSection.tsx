@@ -21,8 +21,12 @@ export default function BlogSection({ initialPosts }: BlogSectionProps) {
       <SectionHeader
         eyebrow="Insights"
         title="Cybersecurity Law Insights"
-        description="Analysis and commentary on regulatory compliance, data protection, and the intersection of technology and law."
+        description=""
       />
+
+      <p className="max-w-3xl mx-auto mb-10 text-center text-charcoal/75 leading-relaxed">
+        This publication examines regulatory developments, cybersecurity enforcement trends, AI governance frameworks, and digital privacy law. Each analysis focuses on practical implications for regulated entities operating in data-intensive environments.
+      </p>
 
       {posts.length > 0 ? (
         <>
