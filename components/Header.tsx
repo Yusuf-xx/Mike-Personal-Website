@@ -13,7 +13,7 @@ export default function Header() {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '#about' },
-    { name: 'Cybersecurity Law Insights', href: '#blog' },
+    { name: 'Blog', href: '#blog' },
     { name: 'Resources', href: '#resources' },
     { name: 'Resume', href: '#cv' },
     { name: 'Contact', href: '#contact' },
@@ -67,7 +67,7 @@ export default function Header() {
             href="/"
             className="font-serif text-xl md:text-2xl font-semibold tracking-tight text-charcoal"
           >
-            Cybersecurity & Law
+            Technology Law & Cybersecurity
           </Link>
 
           <div className="hidden md:flex items-center gap-8">

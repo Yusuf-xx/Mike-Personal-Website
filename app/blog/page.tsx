@@ -29,7 +29,7 @@ export default function BlogPage() {
       <div className="max-w-6xl mx-auto px-4">
         <SectionHeader
           eyebrow="Insights"
-          title="Cybersecurity Law Insights"
+          title="Cybersecurity and Technology Law"
           description=""
           align="left"
         />

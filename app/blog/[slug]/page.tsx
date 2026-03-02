@@ -20,7 +20,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${post.title} - Cybersecurity Law Insights`,
+    title: `${post.title} - Cybersecurity and Technology Law`,
     description: post.description || post.title,
   };
 }

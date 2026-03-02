@@ -20,7 +20,7 @@ export default function BlogSection({ initialPosts }: BlogSectionProps) {
     <Section id="blog" background="gray">
       <SectionHeader
         eyebrow="Insights"
-        title="Cybersecurity Law Insights"
+        title="Cybersecurity and Technology Law"
         description=""
       />
 
