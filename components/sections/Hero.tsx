@@ -19,6 +19,16 @@ export default function Hero() {
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-charcoal leading-[1.15]">
               Cybersecurity, Technology Law, and Regulatory Governance
             </h1>
+            <div className="block md:hidden mt-6">
+              <Image
+                src="/hero-data-privacy.jpg"
+                alt="Data privacy and cybersecurity concepts: user protection, data theft prevention, device protection, phishing awareness, and data governance"
+                width={560}
+                height={420}
+                className="w-full h-auto object-contain"
+                priority
+              />
+            </div>
             <p className="max-w-xl text-lg text-charcoal/75 leading-relaxed">
               New York Bar candidate focused on cybersecurity and technology law. Six years across healthcare technology, banking, and SaaS—designing compliance strategies and governance controls where legal precision and risk matter.
             </p>
@@ -40,7 +50,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
-            className="hidden md:block relative w-full max-w-md lg:max-w-lg"
+            className="hidden md:block relative w-full max-w-md lg:max-w-lg md:mx-0"
           >
             <Image
               src="/hero-data-privacy.jpg"
