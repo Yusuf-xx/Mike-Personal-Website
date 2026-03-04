@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
-import Button from './ui/Button';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,7 +66,7 @@ export default function Header() {
             href="/"
             className="font-serif text-xl md:text-2xl font-semibold tracking-tight text-charcoal"
           >
-            Technology Law & Cybersecurity
+            Technology & Cybersecurity Law
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
@@ -105,11 +104,6 @@ export default function Header() {
                 </Link>
               );
             })}
-            <Link href="/admin">
-              <Button variant="outline" className="py-2 px-4 text-sm">
-                Login
-              </Button>
-            </Link>
           </div>
 
           <button
@@ -133,11 +127,6 @@ export default function Header() {
                 {link.name}
               </a>
             ))}
-            <Link href="/admin" onClick={() => setIsMenuOpen(false)} className="block pt-2">
-              <Button variant="outline" className="w-full py-2">
-                Login
-              </Button>
-            </Link>
           </div>
         )}
       </nav>

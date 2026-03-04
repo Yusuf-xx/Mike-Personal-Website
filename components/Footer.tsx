@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
             <p className="font-serif text-lg font-semibold text-white/95">
-              Cybersecurity & Technology Law
+              Technology & Cybersecurity Law
             </p>
             <p className="mt-1 text-sm text-white/60">
               Cybersecurity, regulation, and technology governance.

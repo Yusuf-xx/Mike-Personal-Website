@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 
 export const metadata: Metadata = {
-  title: 'Cybersecurity & Technology Law',
+  title: 'Technology & Cybersecurity Law',
   description: 'New York Bar candidate specializing in cybersecurity law, regulatory compliance, AI governance, and digital risk within healthcare, banking, and SaaS environments.',
   keywords: ['cybersecurity law', 'technology law', 'regulatory compliance', 'AI governance', 'data protection', 'risk governance'],
 };
