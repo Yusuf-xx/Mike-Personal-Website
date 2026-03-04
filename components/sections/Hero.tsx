@@ -33,12 +33,12 @@ export default function Hero() {
               In an era of escalating digital threats and regulatory scrutiny, cybersecurity and technology law demand robust governance frameworks to protect data, mitigate risks, and ensure compliance across industries like healthcare, banking, and SaaS. Explore insights into evolving standards such as ISO 27001, GDPR, and NIST that shape secure, legally defensible systems.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="#blog">
+              <Link href="/#blog">
                 <Button variant="primary" className="w-full sm:w-auto">
                   Read Insights
                 </Button>
               </Link>
-              <Link href="#contact">
+              <Link href="/#contact">
                 <Button
                   variant="outline"
                   className="w-full sm:w-auto border-slate-300 text-slate-200 hover:bg-white/10 hover:border-slate-200 focus-visible:ring-slate-400 focus-visible:ring-offset-slate-950"

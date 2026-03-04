@@ -11,11 +11,11 @@ export default function Header() {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'About me', href: '#about' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'Resources', href: '#resources' },
-    { name: 'Resume', href: '#cv' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About me', href: '/#about' },
+    { name: 'Blog', href: '/#blog' },
+    { name: 'Resources', href: '/#resources' },
+    { name: 'Resume', href: '/#cv' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   useEffect(() => {
@@ -71,36 +71,25 @@ export default function Header() {
 
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => {
-              const isHash = link.href.startsWith('#');
-              const sectionId = isHash ? link.href.slice(1) : null;
+              const sectionId = link.href.includes('#') ? link.href.split('#')[1] : null;
               const isActive = sectionId ? activeSection === sectionId : false;
-
-              if (isHash) {
-                return (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className={`relative text-sm font-medium text-charcoal/80 hover:text-navy transition-colors duration-200 py-2 ${
-                      isActive ? 'text-navy' : ''
-                    }`}
-                  >
-                    {link.name}
-                    <span
-                      className={`absolute bottom-0 left-0 h-px bg-navy transition-all duration-200 ${
-                        isActive ? 'w-full' : 'w-0 hover:w-full'
-                      }`}
-                    />
-                  </a>
-                );
-              }
 
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="relative text-sm font-medium text-charcoal/80 hover:text-navy transition-colors duration-200 py-2 after:absolute after:bottom-0 after:left-0 after:h-px after:bg-navy after:transition-all after:duration-200 after:w-0 hover:after:w-full"
+                  className={`relative text-sm font-medium text-charcoal/80 hover:text-navy transition-colors duration-200 py-2 ${
+                    isActive ? 'text-navy' : ''
+                  }`}
                 >
                   {link.name}
+                  {sectionId && (
+                    <span
+                      className={`absolute bottom-0 left-0 h-px bg-navy transition-all duration-200 ${
+                        isActive ? 'w-full' : 'w-0 hover:w-full'
+                      }`}
+                    />
+                  )}
                 </Link>
               );
             })}
@@ -118,14 +107,14 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border-muted space-y-1">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 className="block py-3 text-charcoal/90 hover:text-navy transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
         )}

@@ -5,8 +5,8 @@ import Link from 'next/link';
 export default function Footer() {
   const links = [
     { name: 'Insights', href: '/blog' },
-    { name: 'Resources', href: '#resources' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Resources', href: '/#resources' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   return (
@@ -23,13 +23,13 @@ export default function Footer() {
           </div>
           <nav className="flex flex-wrap gap-6">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 className="text-sm text-white/75 hover:text-white transition-colors duration-200"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
