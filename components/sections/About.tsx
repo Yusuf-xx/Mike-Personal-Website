@@ -2,6 +2,7 @@
 
 import Section from '../ui/Section';
 import SectionHeader from '../ui/SectionHeader';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 export default function About() {
@@ -9,7 +10,7 @@ export default function About() {
     <Section id="about" background="white">
       <SectionHeader
         eyebrow=""
-        title="About"
+        title="About me"
         description=""
         align="left"
       />
@@ -21,14 +22,21 @@ export default function About() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="aspect-[3/4] max-w-sm bg-border-muted/60 flex items-center justify-center"
+          className="aspect-[3/4] max-w-sm relative overflow-hidden bg-border-muted/60"
         >
-          <span className="text-charcoal/40 text-sm">Professional portrait</span>
+          <Image
+            src="/portrait.png"
+            alt="Professional portrait of Olakunle Ogunjimi"
+            fill
+            className="object-cover object-top"
+            sizes="(max-width: 768px) 100vw, 384px"
+            priority={false}
+          />
         </motion.div>
 
         <div className="space-y-6">
           <p className="text-base leading-relaxed text-charcoal/80 md:text-lg">
-            I am a New York Bar candidate focused on cybersecurity and technology law, with operational experience in highly regulated, data-intensive environments where legal precision and risk governance are critical.
+            My name is Olakunle Ogunjimi, and I am a New York Bar candidate focused on cybersecurity and technology law, with operational experience in highly regulated, data-intensive environments where legal precision and risk governance are critical.
           </p>
           <p className="text-base leading-relaxed text-charcoal/80 md:text-lg">
             Over six years, I have worked across healthcare technology, banking, and SaaS. My practice centers on systems where regulatory expectations, data protection obligations, and incident response requirements converge—and where governance controls must be both technically sound and legally defensible.

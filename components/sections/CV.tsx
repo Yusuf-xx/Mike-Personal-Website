@@ -13,8 +13,8 @@ export default function CV() {
       <div className="max-w-2xl mx-auto text-center">
         <SectionHeader
           eyebrow="Credentials"
-          title="Curriculum Vitae"
-          description="New York Bar candidate at the intersection of cybersecurity and technology law. Experience designing compliance and governance programs aligned with ISO 27001, GDPR, and NIST across healthcare, banking, and SaaS. Focus on regulatory risk, incident response, and operational alignment with legal standards."
+          title="Resume"
+          description="As a New York Bar candidate at the intersection of cybersecurity and technology law, I bring hands-on experience designing compliance and governance programs aligned with ISO 27001, GDPR, and NIST across healthcare, banking, and SaaS sectors. My focus centers on regulatory risk management, incident response, and operational alignment with evolving legal standards."
           align="center"
         />
         <motion.div
@@ -26,7 +26,7 @@ export default function CV() {
         >
           <a href={CV_DOWNLOAD_URL} download>
             <Button variant="outline" className="min-w-[200px]">
-              Download CV
+              Download Resume
             </Button>
           </a>
         </motion.div>

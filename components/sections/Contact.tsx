@@ -10,11 +10,11 @@ import { FiGithub, FiLinkedin, FiMail, FiDownload, FiMapPin } from 'react-icons/
 import SectionHeader from '../ui/SectionHeader';
 
 const CONTACT_ADDRESS = {
-  line1: '123 Security Avenue, Suite 100',
-  line2: 'Cyber City, CC 12345',
+  line1: '2200 Crooks Rd',
+  line2: 'Troy, MI 48084, USA',
 };
 const MAP_EMBED_URL =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.184133273394!2d-73.987844923471!3d40.748440971388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1633024800000!5m2!1sen!2sus';
+  'https://www.google.com/maps?q=2200+Crooks+Rd,+Troy,+MI+48084,+USA&output=embed';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -160,7 +160,7 @@ export default function Contact() {
 
           <Button variant="outline" className="w-full" type="button" onClick={() => window.location.href = '#cv'}>
             <FiDownload className="mr-2 inline" size={18} />
-            Download CV
+            Download Resume
           </Button>
         </div>
       </div>

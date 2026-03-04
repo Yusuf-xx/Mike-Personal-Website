@@ -25,7 +25,7 @@ export default function BlogSection({ initialPosts }: BlogSectionProps) {
       />
 
       <p className="max-w-3xl mx-auto mb-10 text-center text-charcoal/75 leading-relaxed">
-        This publication examines regulatory developments, cybersecurity enforcement trends, AI governance frameworks, and digital privacy law. Each analysis focuses on practical implications for regulated entities operating in data-intensive environments.
+        These publications explore key regulatory developments, cybersecurity enforcement actions, AI governance structures, and digital privacy regulations. My analyses highlight real-world implications for organizations navigating compliance challenges in data-heavy sectors.
       </p>
 
       {posts.length > 0 ? (
