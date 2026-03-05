@@ -22,7 +22,7 @@ export default function Hero() {
             <div className="block md:hidden mt-6">
               <Image
                 src="/hero-banner.png"
-                alt="Cybersecurity posture of legal sector threatened: gavel and laptop symbolizing law and technology"
+                alt="Safeguarding sectors through cybersecurity law: gavel and laptop symbolizing law and technology"
                 width={560}
                 height={420}
                 className="w-full h-auto object-contain"
@@ -57,7 +57,7 @@ export default function Hero() {
           >
             <Image
               src="/hero-banner.png"
-              alt="Cybersecurity posture of legal sector threatened: gavel and laptop symbolizing law and technology"
+              alt="Safeguarding sectors through cybersecurity law: gavel and laptop symbolizing law and technology"
               width={560}
               height={420}
               className="w-full h-auto object-contain"

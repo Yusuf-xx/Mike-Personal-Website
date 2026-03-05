@@ -36,16 +36,16 @@ export default function About() {
 
         <div className="space-y-6">
           <p className="text-base leading-relaxed text-charcoal/80 md:text-lg">
-            My name is Olakunle Ogunjimi, and I am a New York Bar candidate focused on cybersecurity and technology law, with operational experience in highly regulated, data-intensive environments where legal precision and risk governance are critical.
+            My name is Olakunle Ogunjimi. I am a New York Bar candidate focused on cybersecurity, technology law, and regulatory risk. My background includes operational experience in highly regulated, data intensive environments where governance controls and legal compliance are critical.
           </p>
           <p className="text-base leading-relaxed text-charcoal/80 md:text-lg">
-            Over six years, I have worked across healthcare technology, banking, and SaaS. My practice centers on systems where regulatory expectations, data protection obligations, and incident response requirements converge—and where governance controls must be both technically sound and legally defensible.
+            Over the past six years, I have worked across healthcare technology, banking, and SaaS sectors. My experience centers on systems where regulatory obligations, data protection requirements, and incident response responsibilities intersect, and where organizations must ensure that governance frameworks are both technically sound and legally defensible.
           </p>
           <p className="text-base leading-relaxed text-charcoal/80 md:text-lg">
-            I design and implement compliance strategies aligned with ISO 27001, GDPR, and NIST frameworks. This work addresses incident response, data protection, and regulatory risk—strengthening governance controls, evaluating emerging technology risks, and aligning operational systems with evolving legal standards.
+            I develop and implement compliance and risk management strategies aligned with frameworks such as ISO 27001, GDPR, and NIST. My work includes incident response governance, data protection programs, and regulatory risk assessment, with a focus on strengthening internal controls and aligning operational systems with evolving legal standards.
           </p>
           <p className="text-base leading-relaxed text-charcoal/80 md:text-lg">
-            Through writing and analysis, I examine cybersecurity regulation, AI governance, and digital privacy enforcement, offering structured legal insight into the risks and frameworks shaping modern technology ecosystems.
+            Through writing and legal analysis, I examine developments in cybersecurity regulation, AI governance, and digital privacy enforcement. My work analyzes how emerging technologies and regulatory frameworks shape legal risk for organizations operating in complex technology environments.
           </p>
           <div className="pt-4">
             <h3 className="font-serif text-lg font-semibold text-charcoal mb-3">Focus areas</h3>
