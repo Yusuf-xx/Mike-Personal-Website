@@ -6,6 +6,9 @@ import CV from '@/components/sections/CV';
 import Contact from '@/components/sections/Contact';
 import { getAllPosts } from '@/lib/data/posts';
 
+// Always fetch fresh posts so new articles appear on Netlify without redeploying
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const posts = await getAllPosts();
   return (

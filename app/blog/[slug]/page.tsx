@@ -5,6 +5,9 @@ import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { Metadata } from 'next';
 
+// Always fetch fresh post so new articles are reachable on Netlify without redeploying
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({
   params,
 }: {
