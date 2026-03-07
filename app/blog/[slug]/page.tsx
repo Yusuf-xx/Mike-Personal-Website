@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { Metadata } from 'next';
-import DOMPurify from 'isomorphic-dompurify';
 
 function escapeHtml(text: string): string {
   return text
@@ -26,6 +25,34 @@ function decodeHtmlEntities(html: string): string {
     .replace(/&amp;/g, '&');
 }
 
+const ALLOWED_TAGS = ['p', 'br', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li', 'span', 'h1', 'h2', 'h3'];
+const ALLOWED_ATTR = ['href', 'target', 'rel', 'style', 'class', 'type', 'data-list-style'];
+
+/** Sanitize HTML for blog body. Uses dynamic import so DOMPurify load failures don't 500 the page. */
+async function sanitizeBlogHtml(content: string): Promise<string> {
+  try {
+    const DOMPurify = (await import('isomorphic-dompurify')).default;
+    const raw = content.trim();
+    const decoded =
+      raw.startsWith('&lt;') || raw.startsWith('&amp;lt;') ? decodeHtmlEntities(raw) : raw;
+    if (decoded.startsWith('<')) {
+      return DOMPurify.sanitize(decoded, {
+        ALLOWED_TAGS,
+        ALLOWED_ATTR,
+      });
+    }
+    return DOMPurify.sanitize(
+      decoded
+        .split('\n')
+        .map((line) => `<p>${escapeHtml(line)}</p>`)
+        .join(''),
+      { ALLOWED_TAGS: ['p'], ALLOWED_ATTR: [] }
+    );
+  } catch {
+    return '';
+  }
+}
+
 // Always fetch fresh post so new articles are reachable on Netlify without redeploying
 export const dynamic = 'force-dynamic';
 
@@ -34,19 +61,19 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
-
-  if (!post) {
+  try {
+    const { slug } = await params;
+    const post = await getPostBySlug(slug);
+    if (!post) {
+      return { title: 'Post Not Found' };
+    }
     return {
-      title: 'Post Not Found',
+      title: `${post.title} - Cybersecurity and Technology Law`,
+      description: post.description || post.title,
     };
+  } catch {
+    return { title: 'Post Not Found' };
   }
-
-  return {
-    title: `${post.title} - Cybersecurity and Technology Law`,
-    description: post.description || post.title,
-  };
 }
 
 export default async function BlogPostPage({
@@ -54,14 +81,20 @@ export default async function BlogPostPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  let post: Awaited<ReturnType<typeof getPostBySlug>> | null = null;
+  try {
+    const { slug } = await params;
+    post = await getPostBySlug(slug);
+  } catch {
+    notFound();
+  }
 
   if (!post) {
     notFound();
   }
 
   const content = typeof post.content === 'string' ? post.content : '';
+  const sanitizedHtml = await sanitizeBlogHtml(content);
 
   return (
     <div className="min-h-screen bg-ivory py-24">
@@ -104,31 +137,7 @@ export default async function BlogPostPage({
 
         <div
           className="blog-content text-[16px] leading-[1.75] text-charcoal/85 md:text-[17px] md:leading-[1.8] space-y-6"
-          dangerouslySetInnerHTML={{
-            __html: (() => {
-              try {
-                const raw = content.trim();
-                const decoded =
-                  raw.startsWith('&lt;') || raw.startsWith('&amp;lt;')
-                    ? decodeHtmlEntities(raw)
-                    : raw;
-                return decoded.startsWith('<')
-                  ? DOMPurify.sanitize(decoded, {
-                      ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li', 'span', 'h1', 'h2', 'h3'],
-                      ALLOWED_ATTR: ['href', 'target', 'rel', 'style', 'class', 'type', 'data-list-style'],
-                    })
-                  : DOMPurify.sanitize(
-                      decoded
-                        .split('\n')
-                        .map((line) => `<p>${escapeHtml(line)}</p>`)
-                        .join(''),
-                      { ALLOWED_TAGS: ['p'], ALLOWED_ATTR: [] }
-                    );
-              } catch {
-                return '';
-              }
-            })(),
-          }}
+          dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
         />
 
         <div className="mt-14 pt-8 border-t border-border-muted">

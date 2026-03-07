@@ -2,6 +2,7 @@ const path = require('path');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  serverExternalPackages: ['isomorphic-dompurify', 'jsdom'],
   images: {
     remotePatterns: [{ protocol: 'http', hostname: 'localhost', pathname: '/**' }],
   },
