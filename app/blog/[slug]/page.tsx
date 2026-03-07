@@ -15,6 +15,17 @@ function escapeHtml(text: string): string {
     .replace(/'/g, '&#039;');
 }
 
+/** Decode HTML entities so escaped content from DB/API renders as HTML. */
+function decodeHtmlEntities(html: string): string {
+  return html
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, '&');
+}
+
 // Always fetch fresh post so new articles are reachable on Netlify without redeploying
 export const dynamic = 'force-dynamic';
 
@@ -92,18 +103,25 @@ export default async function BlogPostPage({
         <div
           className="blog-content text-[16px] leading-[1.75] text-charcoal/85 md:text-[17px] md:leading-[1.8] space-y-6"
           dangerouslySetInnerHTML={{
-            __html: post.content.trim().startsWith('<')
-              ? DOMPurify.sanitize(post.content, {
-                  ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li', 'span', 'h1', 'h2', 'h3'],
-                  ALLOWED_ATTR: ['href', 'target', 'rel', 'style', 'class', 'type', 'data-list-style'],
-                })
-              : DOMPurify.sanitize(
-                  post.content
-                    .split('\n')
-                    .map((line) => `<p>${escapeHtml(line)}</p>`)
-                    .join(''),
-                  { ALLOWED_TAGS: ['p'], ALLOWED_ATTR: [] }
-                ),
+            __html: (() => {
+              const raw = post.content.trim();
+              const decoded =
+                raw.startsWith('&lt;') || raw.startsWith('&amp;lt;')
+                  ? decodeHtmlEntities(raw)
+                  : raw;
+              return decoded.startsWith('<')
+                ? DOMPurify.sanitize(decoded, {
+                    ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li', 'span', 'h1', 'h2', 'h3'],
+                    ALLOWED_ATTR: ['href', 'target', 'rel', 'style', 'class', 'type', 'data-list-style'],
+                  })
+                : DOMPurify.sanitize(
+                    decoded
+                      .split('\n')
+                      .map((line) => `<p>${escapeHtml(line)}</p>`)
+                      .join(''),
+                    { ALLOWED_TAGS: ['p'], ALLOWED_ATTR: [] }
+                  );
+            })(),
           }}
         />
 
