@@ -103,20 +103,22 @@ export default function DashboardPage() {
                         {formatDate(post.created_at)}
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-right space-x-2">
-                      <Link href={`/admin/dashboard/edit/${post.id}`}>
-                        <Button variant="outline" className="py-1 px-3 text-sm">
-                          Edit
+                    <td className="px-6 py-4 text-right">
+                      <div className="flex items-center justify-end gap-2">
+                        <Link href={`/admin/dashboard/edit/${post.id}`}>
+                          <Button variant="outline" className="py-1 px-3 text-sm">
+                            Edit
+                          </Button>
+                        </Link>
+                        <Button
+                          variant="secondary"
+                          className="py-1 px-3 text-sm"
+                          onClick={() => handleDelete(post.id)}
+                          disabled={deletingId === post.id}
+                        >
+                          {deletingId === post.id ? 'Deleting...' : 'Delete'}
                         </Button>
-                      </Link>
-                      <Button
-                        variant="secondary"
-                        className="py-1 px-3 text-sm"
-                        onClick={() => handleDelete(post.id)}
-                        disabled={deletingId === post.id}
-                      >
-                        {deletingId === post.id ? 'Deleting...' : 'Delete'}
-                      </Button>
+                      </div>
                     </td>
                   </tr>
                 ))}
