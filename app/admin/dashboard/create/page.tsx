@@ -6,6 +6,7 @@ import { createPostAction } from '../../post-actions';
 import { generateSlug } from '@/utils/helpers';
 import Input from '@/components/ui/Input';
 import Textarea from '@/components/ui/Textarea';
+import RichTextEditor from '@/components/editor/RichTextEditor';
 import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
@@ -44,6 +45,11 @@ export default function CreatePostPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    const trimmed = formData.content.replace(/<[^>]*>/g, '').trim();
+    if (!trimmed) {
+      setError('Content is required.');
+      return;
+    }
     setIsSubmitting(true);
 
     try {
@@ -129,16 +135,18 @@ export default function CreatePostPage() {
               )}
             </div>
 
-            <Textarea
-              label="Content"
-              name="content"
-              value={formData.content}
-              onChange={(content) => setFormData({ ...formData, content })}
-              placeholder="Write your blog post content here..."
-              required
-              rows={15}
-              disabled={isSubmitting}
-            />
+            <div className="mb-6">
+              <label className="mb-2 block text-sm font-medium text-charcoal">
+                Content <span className="text-red-500">*</span>
+              </label>
+              <RichTextEditor
+                value={formData.content}
+                onChange={(content) => setFormData({ ...formData, content })}
+                placeholder="Write your blog post content here..."
+                disabled={isSubmitting}
+                minHeight="320px"
+              />
+            </div>
 
             {error && (
               <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">

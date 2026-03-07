@@ -1,9 +1,19 @@
-import { getPostBySlug, getAllPosts } from '@/lib/data/posts';
+import { getPostBySlug } from '@/lib/data/posts';
 import { formatDate } from '@/utils/helpers';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { Metadata } from 'next';
+import DOMPurify from 'isomorphic-dompurify';
+
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 
 // Always fetch fresh post so new articles are reachable on Netlify without redeploying
 export const dynamic = 'force-dynamic';
@@ -79,11 +89,23 @@ export default async function BlogPostPage({
           </div>
         )}
 
-        <div className="text-[16px] leading-[1.75] text-charcoal/85 md:text-[17px] md:leading-[1.8] space-y-6">
-          <div className="whitespace-pre-wrap">
-            {post.content}
-          </div>
-        </div>
+        <div
+          className="blog-content text-[16px] leading-[1.75] text-charcoal/85 md:text-[17px] md:leading-[1.8] space-y-6"
+          dangerouslySetInnerHTML={{
+            __html: post.content.trim().startsWith('<')
+              ? DOMPurify.sanitize(post.content, {
+                  ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li', 'span', 'h1', 'h2', 'h3'],
+                  ALLOWED_ATTR: ['href', 'target', 'rel', 'style', 'class', 'type', 'data-list-style'],
+                })
+              : DOMPurify.sanitize(
+                  post.content
+                    .split('\n')
+                    .map((line) => `<p>${escapeHtml(line)}</p>`)
+                    .join(''),
+                  { ALLOWED_TAGS: ['p'], ALLOWED_ATTR: [] }
+                ),
+          }}
+        />
 
         <div className="mt-14 pt-8 border-t border-border-muted">
           <Link href="/blog">

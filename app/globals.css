@@ -11,3 +11,129 @@
     @apply text-charcoal bg-ivory antialiased font-sans;
   }
 }
+
+/* Rich text editor (TipTap) content area */
+.ProseMirror {
+  @apply min-h-[200px] px-4 py-3 text-charcoal outline-none;
+}
+.ProseMirror p { @apply mb-3 last:mb-0; }
+.ProseMirror ul { @apply pl-6 mb-3 space-y-1 list-disc; }
+.ProseMirror ul[data-list-style="circle"] { list-style-type: circle; }
+.ProseMirror ul[data-list-style="square"] { list-style-type: square; }
+/* Custom bullet symbols (Word-like) */
+.ProseMirror ul[data-list-style="diamond"] { list-style: none; }
+.ProseMirror ul[data-list-style="diamond"] li::before { content: "◆\a0"; }
+.ProseMirror ul[data-list-style="arrow"] { list-style: none; }
+.ProseMirror ul[data-list-style="arrow"] li::before { content: "►\a0"; }
+.ProseMirror ul[data-list-style="check"] { list-style: none; }
+.ProseMirror ul[data-list-style="check"] li::before { content: "✓\a0"; }
+.ProseMirror ul[data-list-style="dash"] { list-style: none; }
+.ProseMirror ul[data-list-style="dash"] li::before { content: "–\a0"; }
+.ProseMirror ul[data-list-style="star"] { list-style: none; }
+.ProseMirror ul[data-list-style="star"] li::before { content: "★\a0"; }
+.ProseMirror ul[data-list-style="triangle"] { list-style: none; }
+.ProseMirror ul[data-list-style="triangle"] li::before { content: "▸\a0"; }
+.ProseMirror ul[data-list-style="double-arrow"] { list-style: none; }
+.ProseMirror ul[data-list-style="double-arrow"] li::before { content: "»\a0"; }
+.ProseMirror ul[data-list-style="plus"] { list-style: none; }
+.ProseMirror ul[data-list-style="plus"] li::before { content: "+\a0"; }
+.ProseMirror ul[data-list-style="asterisk"] { list-style: none; }
+.ProseMirror ul[data-list-style="asterisk"] li::before { content: "*\a0"; }
+.ProseMirror ul[data-list-style="heart"] { list-style: none; }
+.ProseMirror ul[data-list-style="heart"] li::before { content: "♥\a0"; }
+.ProseMirror ul[data-list-style="long-dash"] { list-style: none; }
+.ProseMirror ul[data-list-style="long-dash"] li::before { content: "—\a0"; }
+.ProseMirror ul[data-list-style="circle-filled"] { list-style: none; }
+.ProseMirror ul[data-list-style="circle-filled"] li::before { content: "●\a0"; }
+.ProseMirror ul[data-list-style="square-small"] { list-style: none; }
+.ProseMirror ul[data-list-style="square-small"] li::before { content: "▪\a0"; }
+.ProseMirror ul[data-list-style="square-outline"] { list-style: none; }
+.ProseMirror ul[data-list-style="square-outline"] li::before { content: "☐\a0"; }
+.ProseMirror ul[data-list-style="ring"] { list-style-type: circle; }
+.ProseMirror ul[data-list-style="diamond-outline"] { list-style: none; }
+.ProseMirror ul[data-list-style="diamond-outline"] li::before { content: "♦\a0"; }
+.ProseMirror ul[data-list-style="arrow-right"] { list-style: none; }
+.ProseMirror ul[data-list-style="arrow-right"] li::before { content: "→\a0"; }
+/* Custom bullet list items: align bullet with text */
+.ProseMirror ul[data-list-style]:not([data-list-style="disc"]):not([data-list-style="circle"]):not([data-list-style="square"]):not([data-list-style="ring"]) li { display: flex; align-items: flex-start; }
+.ProseMirror ul[data-list-style]:not([data-list-style="disc"]):not([data-list-style="circle"]):not([data-list-style="square"]):not([data-list-style="ring"]) li::before { margin-right: 0.35rem; flex-shrink: 0; }
+.ProseMirror ol { @apply pl-6 mb-3 space-y-1; list-style-type: decimal; }
+.ProseMirror ol[type="A"] { list-style-type: upper-alpha; }
+.ProseMirror ol[type="a"] { list-style-type: lower-alpha; }
+.ProseMirror ol[type="I"] { list-style-type: upper-roman; }
+.ProseMirror ol[type="i"] { list-style-type: lower-roman; }
+.ProseMirror a,
+.ProseMirror a.editor-link {
+  color: #2563eb;
+  text-decoration: underline;
+}
+.ProseMirror a:hover { text-decoration: none; }
+.ProseMirror strong { @apply font-bold; }
+.ProseMirror em { @apply italic; }
+.ProseMirror u { @apply underline; }
+.ProseMirror [style*="background"] { border-radius: 0.15em; }
+.ProseMirror:focus { @apply outline-none; }
+.ProseMirror p.is-editor-empty:first-child::before {
+  @apply text-charcoal/40 float-left h-0 pointer-events-none;
+  content: attr(data-placeholder);
+}
+
+/* Blog post body (rendered rich HTML) */
+.blog-content p { @apply mb-4 last:mb-0; }
+.blog-content ul { @apply pl-6 mb-4 space-y-1 list-disc; }
+.blog-content ul[data-list-style="circle"] { list-style-type: circle; }
+.blog-content ul[data-list-style="square"] { list-style-type: square; }
+.blog-content ul[data-list-style="diamond"] { list-style: none; }
+.blog-content ul[data-list-style="diamond"] li::before { content: "◆\a0"; }
+.blog-content ul[data-list-style="arrow"] { list-style: none; }
+.blog-content ul[data-list-style="arrow"] li::before { content: "►\a0"; }
+.blog-content ul[data-list-style="check"] { list-style: none; }
+.blog-content ul[data-list-style="check"] li::before { content: "✓\a0"; }
+.blog-content ul[data-list-style="dash"] { list-style: none; }
+.blog-content ul[data-list-style="dash"] li::before { content: "–\a0"; }
+.blog-content ul[data-list-style="star"] { list-style: none; }
+.blog-content ul[data-list-style="star"] li::before { content: "★\a0"; }
+.blog-content ul[data-list-style="triangle"] { list-style: none; }
+.blog-content ul[data-list-style="triangle"] li::before { content: "▸\a0"; }
+.blog-content ul[data-list-style="double-arrow"] { list-style: none; }
+.blog-content ul[data-list-style="double-arrow"] li::before { content: "»\a0"; }
+.blog-content ul[data-list-style="plus"] { list-style: none; }
+.blog-content ul[data-list-style="plus"] li::before { content: "+\a0"; }
+.blog-content ul[data-list-style="asterisk"] { list-style: none; }
+.blog-content ul[data-list-style="asterisk"] li::before { content: "*\a0"; }
+.blog-content ul[data-list-style="heart"] { list-style: none; }
+.blog-content ul[data-list-style="heart"] li::before { content: "♥\a0"; }
+.blog-content ul[data-list-style="long-dash"] { list-style: none; }
+.blog-content ul[data-list-style="long-dash"] li::before { content: "—\a0"; }
+.blog-content ul[data-list-style="circle-filled"] { list-style: none; }
+.blog-content ul[data-list-style="circle-filled"] li::before { content: "●\a0"; }
+.blog-content ul[data-list-style="square-small"] { list-style: none; }
+.blog-content ul[data-list-style="square-small"] li::before { content: "▪\a0"; }
+.blog-content ul[data-list-style="square-outline"] { list-style: none; }
+.blog-content ul[data-list-style="square-outline"] li::before { content: "☐\a0"; }
+.blog-content ul[data-list-style="ring"] { list-style-type: circle; }
+.blog-content ul[data-list-style="diamond-outline"] { list-style: none; }
+.blog-content ul[data-list-style="diamond-outline"] li::before { content: "♦\a0"; }
+.blog-content ul[data-list-style="arrow-right"] { list-style: none; }
+.blog-content ul[data-list-style="arrow-right"] li::before { content: "→\a0"; }
+.blog-content ul[data-list-style]:not([data-list-style="disc"]):not([data-list-style="circle"]):not([data-list-style="square"]):not([data-list-style="ring"]) li { display: flex; align-items: flex-start; }
+.blog-content ul[data-list-style]:not([data-list-style="disc"]):not([data-list-style="circle"]):not([data-list-style="square"]):not([data-list-style="ring"]) li::before { margin-right: 0.35rem; flex-shrink: 0; }
+.blog-content ol { @apply pl-6 mb-4 space-y-1; list-style-type: decimal; }
+.blog-content ol[type="A"] { list-style-type: upper-alpha; }
+.blog-content ol[type="a"] { list-style-type: lower-alpha; }
+.blog-content ol[type="I"] { list-style-type: upper-roman; }
+.blog-content ol[type="i"] { list-style-type: lower-roman; }
+.blog-content a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+.blog-content a:hover { text-decoration: none; }
+.blog-content strong { @apply font-bold; }
+.blog-content em { @apply italic; }
+.blog-content u { @apply underline; }
+.blog-content h1 { @apply text-2xl font-semibold mt-6 mb-2; }
+.blog-content h2 { @apply text-xl font-semibold mt-5 mb-2; }
+.blog-content h3 { @apply text-lg font-semibold mt-4 mb-2; }
+.blog-content span[style] { /* font-size, font-family, color, line-height, background from editor */ }
+.blog-content p[style] { /* margin-bottom from paragraph spacing */ }
+.blog-content [style*="background"] { border-radius: 0.15em; }
