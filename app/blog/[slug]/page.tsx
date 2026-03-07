@@ -61,6 +61,8 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  const content = typeof post.content === 'string' ? post.content : '';
+
   return (
     <div className="min-h-screen bg-ivory py-24">
       <article className="max-w-3xl mx-auto px-4">
@@ -86,8 +88,8 @@ export default async function BlogPostPage({
             {post.title}
           </h1>
           <div className="text-sm text-charcoal/50">
-            <time dateTime={post.created_at}>
-              {formatDate(post.created_at)}
+            <time dateTime={post.created_at ?? ''}>
+              {post.created_at ? formatDate(post.created_at) : ''}
             </time>
           </div>
         </header>
@@ -104,23 +106,27 @@ export default async function BlogPostPage({
           className="blog-content text-[16px] leading-[1.75] text-charcoal/85 md:text-[17px] md:leading-[1.8] space-y-6"
           dangerouslySetInnerHTML={{
             __html: (() => {
-              const raw = post.content.trim();
-              const decoded =
-                raw.startsWith('&lt;') || raw.startsWith('&amp;lt;')
-                  ? decodeHtmlEntities(raw)
-                  : raw;
-              return decoded.startsWith('<')
-                ? DOMPurify.sanitize(decoded, {
-                    ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li', 'span', 'h1', 'h2', 'h3'],
-                    ALLOWED_ATTR: ['href', 'target', 'rel', 'style', 'class', 'type', 'data-list-style'],
-                  })
-                : DOMPurify.sanitize(
-                    decoded
-                      .split('\n')
-                      .map((line) => `<p>${escapeHtml(line)}</p>`)
-                      .join(''),
-                    { ALLOWED_TAGS: ['p'], ALLOWED_ATTR: [] }
-                  );
+              try {
+                const raw = content.trim();
+                const decoded =
+                  raw.startsWith('&lt;') || raw.startsWith('&amp;lt;')
+                    ? decodeHtmlEntities(raw)
+                    : raw;
+                return decoded.startsWith('<')
+                  ? DOMPurify.sanitize(decoded, {
+                      ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li', 'span', 'h1', 'h2', 'h3'],
+                      ALLOWED_ATTR: ['href', 'target', 'rel', 'style', 'class', 'type', 'data-list-style'],
+                    })
+                  : DOMPurify.sanitize(
+                      decoded
+                        .split('\n')
+                        .map((line) => `<p>${escapeHtml(line)}</p>`)
+                        .join(''),
+                      { ALLOWED_TAGS: ['p'], ALLOWED_ATTR: [] }
+                    );
+              } catch {
+                return '';
+              }
             })(),
           }}
         />
