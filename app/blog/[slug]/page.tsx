@@ -28,28 +28,52 @@ function decodeHtmlEntities(html: string): string {
 const ALLOWED_TAGS = ['p', 'br', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li', 'span', 'h1', 'h2', 'h3'];
 const ALLOWED_ATTR = ['href', 'target', 'rel', 'style', 'class', 'type', 'data-list-style'];
 
+/** Fallback when DOMPurify is unavailable: remove dangerous tags/attrs only so content still shows. */
+function fallbackSanitize(html: string): string {
+  let out = html
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '')
+    .replace(/<iframe\b[^>]*>[\s\S]*?<\/iframe>/gi, '')
+    .replace(/\s*on\w+\s*=\s*["'][^"']*["']/gi, '')
+    .replace(/\s*on\w+\s*=\s*[^\s>]+/gi, '');
+  return out;
+}
+
+/** Prepare raw content: decode entities if escaped, return HTML or plain. */
+function prepareContent(content: string): { html: string; isHtml: boolean } {
+  const raw = content.trim();
+  const decoded =
+    raw.startsWith('&lt;') || raw.startsWith('&amp;lt;') ? decodeHtmlEntities(raw) : raw;
+  return {
+    html: decoded,
+    isHtml: decoded.startsWith('<'),
+  };
+}
+
 /** Sanitize HTML for blog body. Uses dynamic import so DOMPurify load failures don't 500 the page. */
 async function sanitizeBlogHtml(content: string): Promise<string> {
+  const { html, isHtml } = prepareContent(content);
+
   try {
     const DOMPurify = (await import('isomorphic-dompurify')).default;
-    const raw = content.trim();
-    const decoded =
-      raw.startsWith('&lt;') || raw.startsWith('&amp;lt;') ? decodeHtmlEntities(raw) : raw;
-    if (decoded.startsWith('<')) {
-      return DOMPurify.sanitize(decoded, {
-        ALLOWED_TAGS,
-        ALLOWED_ATTR,
-      });
+    if (isHtml) {
+      return DOMPurify.sanitize(html, { ALLOWED_TAGS, ALLOWED_ATTR });
     }
     return DOMPurify.sanitize(
-      decoded
+      html
         .split('\n')
         .map((line) => `<p>${escapeHtml(line)}</p>`)
         .join(''),
       { ALLOWED_TAGS: ['p'], ALLOWED_ATTR: [] }
     );
   } catch {
-    return '';
+    if (isHtml) {
+      return fallbackSanitize(html);
+    }
+    return html
+      .split('\n')
+      .map((line) => `<p>${escapeHtml(line)}</p>`)
+      .join('');
   }
 }
 
