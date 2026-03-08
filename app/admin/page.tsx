@@ -17,7 +17,9 @@ export default function AdminLoginPage() {
     setError('');
     setIsPending(true);
     try {
-      const res = await fetch('/api/auth/login', {
+      // Use same origin so it works on Netlify (and with any base path)
+      const loginUrl = `${window.location.origin}/api/auth/login`;
+      const res = await fetch(loginUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email.trim(), password }),
@@ -28,14 +30,21 @@ export default function AdminLoginPage() {
         window.location.href = res.url;
         return;
       }
-      const data = await res.json().catch(() => ({}));
+      const contentType = res.headers.get('content-type') ?? '';
+      let data: { error?: string } = {};
+      if (contentType.includes('application/json')) {
+        data = await res.json().catch(() => ({}));
+      }
       if (data.error) {
         setError(data.error);
+      } else if (res.status === 404) {
+        setError('Login endpoint not found. If deployed on Netlify, ensure the latest build is deployed.');
       } else if (!res.ok) {
-        setError('Login failed. Please try again.');
+        setError(data.error || 'Login failed. Please try again.');
       }
-    } catch {
-      setError('Network error. Please try again.');
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Network error. Please try again.';
+      setError(message);
     } finally {
       setIsPending(false);
     }
