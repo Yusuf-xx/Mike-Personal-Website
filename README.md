@@ -121,10 +121,21 @@ npm install
 cp .env.local.example .env.local
 ```
 
-2. Edit `.env.local` and add your Supabase credentials:
+2. Edit `.env.local` and add your Supabase credentials and SMTP settings (for contact form emails):
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+# Required for public comments (create/edit): Supabase → Settings → API → service_role
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+
+# Contact form: where to receive messages (default: hello@olakunleogunjimi.com)
+CONTACT_TO_EMAIL=hello@olakunleogunjimi.com
+
+# SMTP server (so contact form submissions are emailed to you)
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USER=your_smtp_username
+SMTP_PASS=your_smtp_password
 ```
 
 ### 6. Set Up Database
@@ -133,7 +144,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 2. Click **New Query**
 3. Copy the contents of `supabase-schema.sql`
 4. Paste and click **Run**
-5. This creates the `posts` and `messages` tables with proper security policies
+5. This creates the `posts`, `messages`, `comments`, and `comment_versions` tables with proper security policies
 
 ### 7. Create Admin User
 
@@ -182,10 +193,31 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 2. Click **Delete**
 3. Confirm the deletion
 
+### Comments on blog posts
+
+- Each article has a **Comments** section. Anyone can post a comment (name, email, comment).
+- Commenters can **edit** their own comment; the edit link is stored in a cookie in their browser, so only they see the "Edit" button.
+- Every edit is stored as a **version**; only the latest version is shown publicly.
+- **Admin**: In the dashboard, open **Comments** to see all comments and use **View history** to see every version of a comment.
+- For comments to work (create/edit), add `SUPABASE_SERVICE_ROLE_KEY` to `.env.local` (Supabase → Settings → API → `service_role` key). Keep this secret and server-side only.
+
 ### Contact Form
 
-- Contact form submissions are stored in the `messages` table
+- Contact form submissions are stored in the `messages` table and sent to **hello@olakunleogunjimi.com** via SMTP
+- Configure SMTP in `.env.local` (see step 5 above) so messages are delivered to your inbox
 - View messages in Supabase dashboard: **Table Editor** → `messages`
+
+**SMTP setup:** Add these to `.env.local` (and to your host’s env vars in production):
+
+| Variable | Description |
+|----------|-------------|
+| `SMTP_HOST` | Your SMTP server (e.g. `smtp.gmail.com`, `smtp.sendgrid.net`) |
+| `SMTP_PORT` | Usually `587` (TLS) or `465` (SSL) |
+| `SMTP_USER` | SMTP username / email |
+| `SMTP_PASS` | SMTP password or app password |
+| `CONTACT_TO_EMAIL` | Optional; defaults to `hello@olakunleogunjimi.com` |
+
+For Gmail, use an [App Password](https://support.google.com/accounts/answer/185833) and `smtp.gmail.com` with port `587`.
 
 ## Customization
 
@@ -236,6 +268,8 @@ Edit the following files to add your personal information:
 5. Add environment variables:
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` (for contact form email delivery)
+   - Optional: `CONTACT_TO_EMAIL` (default: hello@olakunleogunjimi.com)
 6. Click **Deploy**
 
 Your site will be live in ~2 minutes!

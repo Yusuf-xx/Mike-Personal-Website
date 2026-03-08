@@ -61,9 +61,14 @@ export default function DashboardPage() {
           <h2 className="text-3xl font-bold text-cyber-black">
             Blog Posts
           </h2>
-          <Link href="/admin/dashboard/create">
-            <Button variant="primary">Create New Post</Button>
-          </Link>
+          <div className="flex gap-3">
+            <Link href="/admin/dashboard/comments">
+              <Button variant="outline">Comments</Button>
+            </Link>
+            <Link href="/admin/dashboard/create">
+              <Button variant="primary">Create New Post</Button>
+            </Link>
+          </div>
         </div>
 
         {loading ? (

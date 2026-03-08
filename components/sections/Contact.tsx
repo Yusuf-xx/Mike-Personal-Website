@@ -131,11 +131,11 @@ export default function Contact() {
                 </address>
               </div>
               <a
-                href="mailto:contact@example.com"
+                href="mailto:hello@olakunleogunjimi.com"
                 className="flex items-center text-charcoal/75 hover:text-navy transition-colors"
               >
                 <FiMail className="mr-3" size={20} />
-                <span>contact@example.com</span>
+                <span>hello@olakunleogunjimi.com</span>
               </a>
               <a
                 href="https://linkedin.com"

@@ -72,3 +72,49 @@ CREATE POLICY "Allow authenticated users to read messages"
 ON messages FOR SELECT
 TO authenticated
 USING (true);
+
+-- ========== Comments (public-facing, with edit + version history) ==========
+CREATE TABLE IF NOT EXISTS comments (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  post_id UUID NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
+  author_name TEXT NOT NULL,
+  author_email TEXT NOT NULL,
+  content TEXT NOT NULL,
+  edit_token TEXT NOT NULL UNIQUE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_comments_post_id ON comments(post_id);
+CREATE INDEX IF NOT EXISTS idx_comments_created_at ON comments(created_at ASC);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_comments_edit_token ON comments(edit_token);
+
+CREATE TABLE IF NOT EXISTS comment_versions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  comment_id UUID NOT NULL REFERENCES comments(id) ON DELETE CASCADE,
+  content TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_comment_versions_comment_id ON comment_versions(comment_id);
+CREATE INDEX IF NOT EXISTS idx_comment_versions_created_at ON comment_versions(created_at DESC);
+
+ALTER TABLE comments ENABLE ROW LEVEL SECURITY;
+ALTER TABLE comment_versions ENABLE ROW LEVEL SECURITY;
+
+-- Public can read current comments only (no version history)
+CREATE POLICY "Allow public read comments"
+ON comments FOR SELECT
+TO public
+USING (true);
+
+-- Insert/update/delete comments only via server (service role); no anon policies for write
+-- So no INSERT/UPDATE/DELETE policy for anon on comments
+
+-- Only authenticated (admin) can read comment version history
+CREATE POLICY "Allow authenticated read comment_versions"
+ON comment_versions FOR SELECT
+TO authenticated
+USING (true);
+
+-- No anon write on comment_versions; inserts done via service role when comment is edited

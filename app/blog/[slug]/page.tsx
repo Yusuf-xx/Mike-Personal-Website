@@ -1,5 +1,7 @@
 import { getPostBySlug } from '@/lib/data/posts';
+import { getCommentsByPostId } from '@/lib/data/comments';
 import { formatDate } from '@/utils/helpers';
+import CommentSection from '@/components/blog/CommentSection';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
@@ -119,6 +121,7 @@ export default async function BlogPostPage({
 
   const content = typeof post.content === 'string' ? post.content : '';
   const sanitizedHtml = await sanitizeBlogHtml(content);
+  const comments = await getCommentsByPostId(post.id);
 
   return (
     <div className="min-h-screen bg-ivory py-24">
@@ -163,6 +166,8 @@ export default async function BlogPostPage({
           className="blog-content text-[16px] leading-[1.75] text-charcoal/85 md:text-[17px] md:leading-[1.8] space-y-6"
           dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
         />
+
+        <CommentSection postId={post.id} slug={post.slug} comments={comments} />
 
         <div className="mt-14 pt-8 border-t border-border-muted">
           <Link href="/blog">
