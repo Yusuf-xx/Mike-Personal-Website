@@ -1,15 +1,45 @@
 'use client';
 
-import { useState, useActionState } from 'react';
+import { useState } from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import { loginFormAction } from './actions';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 
 export default function AdminLoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [state, formAction, isPending] = useActionState(loginFormAction, null);
-  const error = state?.error ?? '';
+  const [error, setError] = useState('');
+  const [isPending, setIsPending] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setIsPending(true);
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim(), password }),
+        redirect: 'follow',
+      });
+      // 302 redirect: fetch follows it; cookies are set, then we go to dashboard
+      if (res.redirected && res.url) {
+        window.location.href = res.url;
+        return;
+      }
+      const data = await res.json().catch(() => ({}));
+      if (data.error) {
+        setError(data.error);
+      } else if (!res.ok) {
+        setError('Login failed. Please try again.');
+      }
+    } catch {
+      setError('Network error. Please try again.');
+    } finally {
+      setIsPending(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-cyber-lightgray flex items-center justify-center py-12 px-4">
@@ -24,11 +54,13 @@ export default function AdminLoginPage() {
         </div>
 
         <div className="bg-white rounded-lg shadow-md p-8">
-          <form action={formAction}>
+          <form onSubmit={handleSubmit}>
             <Input
               label="Email"
               name="email"
               type="email"
+              value={email}
+              onChange={setEmail}
               placeholder="admin@example.com"
               required
               disabled={isPending}
@@ -37,6 +69,8 @@ export default function AdminLoginPage() {
               label="Password"
               name="password"
               type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={setPassword}
               placeholder="••••••••"
               required
               disabled={isPending}
