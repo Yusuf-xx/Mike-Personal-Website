@@ -1,46 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useActionState } from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import { login } from './actions';
+import { loginFormAction } from './actions';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 
-function isRedirectError(error: unknown): boolean {
-  return (
-    typeof error === 'object' &&
-    error !== null &&
-    'digest' in error &&
-    typeof (error as { digest?: string }).digest === 'string' &&
-    (error as { digest: string }).digest.startsWith('NEXT_REDIRECT')
-  );
-}
-
 export default function AdminLoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setIsLoading(true);
-
-    try {
-      const result = await login(email, password);
-      if (result?.error) {
-        setError(result.error);
-      }
-    } catch (err) {
-      // Next.js redirect() throws NEXT_REDIRECT; rethrow so redirect completes
-      if (isRedirectError(err)) throw err;
-      setError('An unexpected error occurred');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const [state, formAction, isPending] = useActionState(loginFormAction, null);
+  const error = state?.error ?? '';
 
   return (
     <div className="min-h-screen bg-cyber-lightgray flex items-center justify-center py-12 px-4">
@@ -55,26 +24,22 @@ export default function AdminLoginPage() {
         </div>
 
         <div className="bg-white rounded-lg shadow-md p-8">
-          <form onSubmit={handleSubmit}>
+          <form action={formAction}>
             <Input
               label="Email"
               name="email"
               type="email"
-              value={email}
-              onChange={setEmail}
               placeholder="admin@example.com"
               required
-              disabled={isLoading}
+              disabled={isPending}
             />
             <Input
               label="Password"
               name="password"
               type={showPassword ? 'text' : 'password'}
-              value={password}
-              onChange={setPassword}
               placeholder="••••••••"
               required
-              disabled={isLoading}
+              disabled={isPending}
               trailing={
                 <button
                   type="button"
@@ -102,9 +67,9 @@ export default function AdminLoginPage() {
               type="submit"
               variant="primary"
               className="w-full"
-              disabled={isLoading}
+              disabled={isPending}
             >
-              {isLoading ? 'Signing in...' : 'Sign In'}
+              {isPending ? 'Signing in...' : 'Sign In'}
             </Button>
           </form>
         </div>

@@ -6,8 +6,10 @@ interface InputProps {
   label: string;
   name: string;
   type?: string;
-  value: string;
-  onChange: (value: string) => void;
+  /** Omit for uncontrolled (e.g. form action submit) */
+  value?: string;
+  /** Omit for uncontrolled */
+  onChange?: (value: string) => void;
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;
@@ -26,6 +28,7 @@ export default function Input({
   disabled = false,
   trailing,
 }: InputProps) {
+  const isControlled = value !== undefined && onChange !== undefined;
   return (
     <div className="mb-4">
       <label htmlFor={name} className="block text-sm font-medium text-charcoal mb-2">
@@ -36,8 +39,7 @@ export default function Input({
           type={type}
           id={name}
           name={name}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
+          {...(isControlled ? { value, onChange: (e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value) } : { defaultValue: '' })}
           placeholder={placeholder}
           required={required}
           disabled={disabled}
